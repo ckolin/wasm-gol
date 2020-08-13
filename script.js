@@ -6,7 +6,7 @@ const options = {
 	width: 400,
 	height: 300,
 	scale: 2,
-	fps: 20
+	fps: 24
 };
 
 WebAssembly.instantiateStreaming(fetch("gol.wasm"))
@@ -31,4 +31,9 @@ WebAssembly.instantiateStreaming(fetch("gol.wasm"))
 				}
 			}
 		}, 1000 / options.fps);
+
+		for (let y = 0; y < options.height; y++)
+			for (let x = 0; x < options.width; x++)
+				if (Math.random() > 0.3)
+					gol.set_cell(x, y, 1);
 	});

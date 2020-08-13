@@ -5,6 +5,11 @@ int width, height;
 uint8 grid[MAX_SIZE];
 uint8 copy[MAX_SIZE];
 
+void init(int w, int h) {
+	width = w;
+	height = h;
+}
+
 uint8* get_grid_pointer() {
 	return &grid[0];
 }
@@ -15,12 +20,11 @@ int get_index(int x, int y) {
 	return y * width + x;
 }
 
-void init(int w, int h) {
-	width = w;
-	height = h;
-	for (int i = 0; i < width * height; i++)
-		if (i % 2 == 0 || i % 7 == 0)
-			grid[i] = 1;
+void set_cell(int x, int y, int v) {
+	int idx = get_index(x, y);
+	if (idx == -1)
+		return;
+	grid[idx] = v;
 }
 
 int count_live_neighbors(int x, int y) {
