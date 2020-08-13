@@ -1,20 +1,12 @@
-#define width 200
-#define height 180
+#define MAX_SIZE 1000*1000
 #define uint8 unsigned char
 
-uint8 grid[width * height];
-uint8 copy[width * height];
+int width, height;
+uint8 grid[MAX_SIZE];
+uint8 copy[MAX_SIZE];
 
 uint8* get_grid_pointer() {
 	return &grid[0];
-}
-
-int get_width() {
-	return width;
-}
-
-int get_height() {
-	return height;
 }
 
 int get_index(int x, int y) {
@@ -23,7 +15,9 @@ int get_index(int x, int y) {
 	return y * width + x;
 }
 
-void init() {
+void init(int w, int h) {
+	width = w;
+	height = h;
 	for (int i = 0; i < width * height; i++)
 		if (i % 2 == 0 || i % 7 == 0)
 			grid[i] = 1;
